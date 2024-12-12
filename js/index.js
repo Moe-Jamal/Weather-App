@@ -342,7 +342,7 @@ async function getTodayForcast(lat, lon) {
           <div class="slider-card text-center">
             <span>${hr} ${a}</span>
             <div class="weather-icon">
-              <img src="./images/direction.png"
+              <img src="/images/direction.png"
                 width="48"
                 height="48"
                 alt="Wind-Direction"
