@@ -39,7 +39,7 @@ async function getCityCoordinates() {
   cityInput.value = "";
   try {
     let geoCordinates = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`
     );
     let geoCordinatesData = await geoCordinates.json();
     let { name, lat, lon, country } = geoCordinatesData[0];
@@ -63,7 +63,7 @@ async function getUserCoordinates() {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       let { latitude, longitude } = position.coords;
-      let reverseApi = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+      let reverseApi = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
       try {
         fetch(reverseApi)
           .then((res) => res.json())
@@ -196,7 +196,7 @@ async function getAirPollutionData(lat, lon) {
     "Very Unhealthy",
     "Hazardous",
   ];
-  let airPollutionApi = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let airPollutionApi = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
   try {
     let airPollutionDetails = await fetch(airPollutionApi);
     let airPollutionData = await airPollutionDetails.json();
