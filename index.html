@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="./css/index.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <!-- File BootStrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- Web Icon -->
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="loader-container d-none position-fixed w-100 h-100 d-flex justify-content-center align-items-center"
+    >
+      <span class="loader"></span>
+    </div>
+    <!-- Loader -->
+    <!-- Start Header -->
+    <nav class="main-shadow pb-3">
+      <div class="container">
+        <div
+          class="holder pt-3 d-flex flex-column flex-sm-row align-items-center justify-content-between row-gap-2"
+        >
+          <a
+            class="my-logo text-decoration-none d-flex flex-column justify-content-start align-items-center"
+            href="#"
+          >
+            <img src="./images/logo.png" alt="WeatherLogo" />
+            <span class="ms-3">Weather</span>
+          </a>
+          <div
+            class="d-flex align-items-center justify-content-end align-self-sm-end flex-grow-1"
+          >
+            <div
+              class="input-search ms-2 ms-sm-3 me-0 me-sm-2 position-relative"
+            >
+              <input
+                id="input-search"
+                class="form-control rounded-4"
+                type="search"
+                placeholder="Search City ..."
+              />
+            </div>
+            <ul class="wrapper">
+              <li id="search-icon" class="icon search">
+                <span class="tooltip">Search</span>
+                <i class="fa-solid fa-search"></i>
+              </li>
+              <li id="locationBtn" class="icon location">
+                <span class="tooltip">Location</span>
+                <i class="fa-solid fa-location-crosshairs"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End Header -->
+    <!-- Start Main Sections -->
+    <section class="weather-details sec-padding">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="row gy-4">
+              <div class="col-12">
+                <div
+                  id="weather-card"
+                  class="weather-card d-flex flex-column justify-content-start align-items-start row-gap-3 main-shadow rounded-4 p-4"
+                >
+                  <div
+                    class="current-weather w-100 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="weather-data text-white p-2">
+                      <span class="fw-semibold fs-5 position-relative"
+                        >Now</span
+                      >
+                      <h2>
+                        <span>___&deg;C</span>
+                      </h2>
+                      <p>____</p>
+                    </div>
+                    <div class="weather-icon">
+                      <img
+                        src="./images/01n.png"
+                        class="w-100"
+                        alt="weatherIcon"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-footer text-white p-2">
+                    <div
+                      class="weather-calendar d-flex justify-content-start align-items-start column-gap-3"
+                    >
+                      <i class="fa-solid fa-calendar-days"></i>
+                      <span>___, __ Dec,__</span>
+                    </div>
+                    <div
+                      class="weather-location d-flex justify-content-start align-items-start column-gap-3 mt-2"
+                    >
+                      <i class="fa-solid fa-location-dot"></i>
+                      <span>___</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div
+                  class="weather-forecast text-white main-shadow rounded-4 p-4"
+                >
+                  <h5 class="position-relative">
+                    5 Days <span class="fw-bold">ForeCast</span>
+                  </h5>
+                  <div id="forecast-container" class="days-forecast mt-4">
+                    <div class="forecast-item">
+                      <div class="img-holder">
+                        <img
+                          src="https://openweathermap.org/img/wn/10d.png"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        class="min-max d-flex flex-column justify-content-center row-gap-1"
+                      >
+                        <p class="mb-0 small text-nowrap">
+                          <span class="text-danger me-1">Max</span>8.2 &deg;C
+                        </p>
+                        <p class="mb-0 small text-nowrap">
+                          <span class="text-info me-1">Min</span>__ &deg;C
+                        </p>
+                      </div>
+                      <p class="mb-0 small text-nowrap">10 Dec</p>
+                      <p class="mb-0 small">Wednesday</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="highlights text-white rounded-4 main-shadow p-4">
+              <h2 class="fw-bold position-relative">Todays Highlights</h2>
+              <div class="row gy-4 mt-4">
+                <div class="col-lg-6">
+                  <div id="highlights-air" class="highlights-air p-3 rounded-4">
+                    <div
+                      class="highlights-title d-flex justify-content-between align-items-center"
+                    >
+                      <h5 class="fs-6 opacity-75 me-2">Air Quality Index</h5>
+                      <span class="api-1 fw-bold py-1 px-2 rounded-4"
+                        >Good</span
+                      >
+                    </div>
+                    <div
+                      class="highlights-details d-flex justify-content-between align-items-center mt-4"
+                    >
+                      <div class="icon">
+                        <i class="fa-solid fa-wind fs-1"></i>
+                      </div>
+                      <div class="item text-center">
+                        <span class="opacity-75">PM2.5</span>
+                        <p class="mb-0">____</p>
+                      </div>
+                      <div class="item text-center">
+                        <span class="opacity-75">SO2</span>
+                        <p class="mb-0">____</p>
+                      </div>
+                      <div class="item text-center">
+                        <span class="opacity-75">NO2</span>
+                        <p class="mb-0">____</p>
+                      </div>
+                      <div class="item text-center">
+                        <span class="opacity-75">O3</span>
+                        <p class="mb-0">____</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="highlights-sun p-3 rounded-4">
+                    <div
+                      class="sun-title d-flex justify-content-between align-items-center"
+                    >
+                      <h5 class="fs-6 opacity-50">Sunrise & Sunset</h5>
+                      <i
+                        class="fa-solid fa-up-right-and-down-left-from-center p-2"
+                      ></i>
+                    </div>
+                    <div
+                      id="sun-details"
+                      class="sun-details mt-4 d-flex justify-content-around align-items-center"
+                    >
+                      <div
+                        class="sunrise d-flex justify-content-center align-items-center column-gap-2"
+                      >
+                        <div class="icon">
+                          <i class="fa-regular fa-sun fs-1"></i>
+                        </div>
+                        <div class="sunrise-details">
+                          <span class="opacity-75">Sunrise</span>
+                          <p class="mb-0">_____</p>
+                        </div>
+                      </div>
+                      <div
+                        class="sunset d-flex justify-content-center align-items-center column-gap-2"
+                      >
+                        <div class="icon">
+                          <i class="fa-solid fa-moon fs-1"></i>
+                        </div>
+                        <div class="sunset-details">
+                          <span class="opacity-75">Sunset</span>
+                          <p class="mb-0">_____</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row gy-4 mt-2">
+                <div class="col-lg-3 col-md-6">
+                  <div class="highlight-humidity p-3 rounded-4">
+                    <span class="opacity-75">Humidity</span>
+                    <div
+                      class="icon-data d-flex justify-content-between align-items-center mt-4"
+                    >
+                      <i class="fa-solid fa-droplet fs-4"></i>
+                      <span id="humidity">___</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="highlight-pressure p-3 rounded-4">
+                    <span class="opacity-75">Pressure</span>
+                    <div
+                      class="icon-data d-flex justify-content-between align-items-center mt-4"
+                    >
+                      <i class="fa-regular fa-compass fs-4"></i>
+                      <span id="pressure">___hpa</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="highlight-visibility p-3 rounded-4">
+                    <span class="opacity-75">Visibility</span>
+                    <div
+                      class="icon-data d-flex justify-content-between align-items-center mt-4"
+                    >
+                      <i class="fa-solid fa-eye fs-4"></i>
+                      <span id="visibility">___Km</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="highlight-feels p-3 rounded-4">
+                    <span class="opacity-75">Feels Like</span>
+                    <div
+                      class="icon-data d-flex justify-content-between align-items-center mt-4"
+                    >
+                      <i class="fa-solid fa-temperature-low fs-4"></i>
+                      <span id="feels_like">___&deg;c</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hourly-forecast text-white mt-4 rounded-4 main-shadow p-4"
+            >
+              <h2 class="fw-bold position-relative">Next 24h Forecast</h2>
+              <div class="slider-container mt-3">
+                <ul id="hourly-forecast" class="slider-list list-unstyled">
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/01n.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__&deg;c</span>
+                    </div>
+                  </li>
+                </ul>
+                <div id="wind-forecast" class="slider-list list-unstyled">
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                  <li class="slider-item rounded-4 p-2 me-3">
+                    <div class="slider-card text-center">
+                      <span>03 pm</span>
+                      <div class="weather-icon">
+                        <img
+                          src="./images/direction.png"
+                          width="48"
+                          height="48"
+                          alt="weather"
+                        />
+                      </div>
+                      <span>__ Km/h</span>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+            <div class="today-chart text-white mt-4 rounded-4 main-shadow p-4">
+              <h2 class="fw-bold position-relative">Next 24h Temp Chart</h2>
+              <canvas id="today-chart" class="mt-4"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Main Sections -->
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
